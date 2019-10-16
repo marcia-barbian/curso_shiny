@@ -12,11 +12,25 @@ output:
       highlightLines: true
       countIncrementalSlides: false
 ---
-
-
-
 ```{r setup, include=FALSE}
-#devtools::install_github("yihui/xaringan")
+# Função pra verificar e instalar um vetor de packages:
+ler_libs <- function(packages){
+  instalar <- packages[!(packages %in% installed.packages()[, "Package"])]
+  if(length(instalar) > 0){
+    install.packages(pkgs = instalar, dependencies = TRUE)
+  }
+  invisible(sapply(packages, require, character.only = TRUE))
+}
+
+ler_libs(packages = c("rmarkdown", "shiny", "devtools", "knitr", "rsconnect"))
+devtools::install_github('yihui/xaringan')
+
+# Pra upar um aplicativo pro shinyapps.io:
+#rsconnect::setAccountInfo(name='teste',
+#                          token='token', 
+#                          secret='XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX')
+#rsconnect::deployApp('/cloud/project/kmeans-example')
+
 options(htmltools.dir.version = FALSE)
 ```
 
@@ -135,19 +149,15 @@ class: middle, center, inverse
 
 --
 
-<img src="figs/shinyapp_ht.png"></img>
-<https://kcvi.shinyapps.io/START_HT/>
-
-
+<a href="https://kcvi.shinyapps.io/START_HT/"><img src="figs/shinyapp_ht.png"></img></a>
 ---
+
 
 # *Estatísticos/Cientistas de dados*: <br>"Como fazer as pessoas utilizarem a metodologia que eu criei ou o meu pacote?"
 
 --
 
-<img src="figs/qvalue.png"></img>
-<http://qvalue.princeton.edu/>
-
+<a href="http://qvalue.princeton.edu/"><img src="figs/qvalue.png"></img></a>
 
 ---
 
@@ -155,8 +165,7 @@ class: middle, center, inverse
 
 --
 
-<img src="figs/phillyschools.png"></img>
-<https://gallery.shinyapps.io/TSupplyDemand/>
+<a href="https://gallery.shinyapps.io/TSupplyDemand/"><img src="figs/phillyschools.png"></img></a>
 
 
 ---
@@ -165,8 +174,7 @@ class: middle, center, inverse
 
 --
 
-<img src="figs/mapa_shiny.png"></img>
-<https://gallery.shinyapps.io/>
+<a href="https://gallery.shinyapps.io/"><img src="figs/mapa_shiny.png"></img></a>
 
 
 ---
@@ -175,8 +183,7 @@ class: middle, center, inverse
 
 --
 
-<img src="figs/learnr.png"></img>
-<https://minnier.shinyapps.io/ODSI_continuousData/>
+<a href="https://minnier.shinyapps.io/ODSI_continuousData/"><img src="figs/learnr.png"></img></a>
 
 ---
 
@@ -245,7 +252,7 @@ class: middle, center, inverse
 
 ### Aqui é onde está a interface com o usário.
 
-### Onde podemos escolher o filtro, tamanho de amostra, gráfico, ...
+### Onde podemos escolher o filtro, tamanho de amostra, gráfico ...
 
 ### Título, como as informações serão apresentadas, o que será apresentado.
 
@@ -284,9 +291,8 @@ class: middle, center, inverse
 ```{r, eval=FALSE}
 
 ui <- fluidPage(
-  # *Input() functions,
-  # *OUtput() functions
-
+  # *Input() functions;
+  # *Output() functions
 )
 ```
 
@@ -312,7 +318,7 @@ numericInput(inputId, label, value, min=NA, max=NA, step=NA, width = NULL)
 
 * min, max faixa de valores permitidos 
 * step se não quiser permitir números quebrados 
-* width é a larguda da caixa
+* width é a largura da caixa
 
 ---
 
@@ -342,7 +348,7 @@ selectInput(inputId, label, choices, selected = NULL, multiple = FALSE, selectiz
 # Exemplo: 
 
 
-<img src="figs/k_means.png"></img>
+<a href="http://shiny.rstudio.com/gallery/kmeans-example.html"><img src="figs/k_means.png"></img></a>
 
 
 ---
@@ -350,7 +356,7 @@ selectInput(inputId, label, choices, selected = NULL, multiple = FALSE, selectiz
 # Outras opções de layout: 
 
 
-<img src="figs/outras_opcoes.png"></img>
+<a href="https://shiny.rstudio.com/gallery/widget-gallery.html"><img src="figs/outras_opcoes.png"></img></a>
 
 ---
 
@@ -455,14 +461,14 @@ server = function(input, output){
 
 ```{r, eval=FALSE}
 
-renderPlot({his(rnorm(100))
+renderPlot({hist(rnorm(100))
   })
 
 ```
 
-* _renderPlot_ é o tipo de objeto
+* `renderPlot` é o tipo de objeto
 
-* _hist_ é o código que constroi o objeto
+* `hist` é o código que constroi o objeto
 
 ---
 
@@ -633,7 +639,7 @@ https://github.com/rladies/rshinylady
 
 1. Crie uma conta no http://www.shinyapps.io/
 
-2. Passo 2: Rode o app na sua máquina e clique em Publish
+2. Rode o app na sua máquina e clique em Publish
 
 
 ---
@@ -650,7 +656,7 @@ class: center, inverse, middle
 
 * Se tem vários clientes que vão ficar horas olhando os resultados vai precisar de uma conta paga.
 
-* VOcê pode pagar só um mês.
+* Você pode pagar só um mês.
 
 
 
@@ -664,8 +670,9 @@ class: center, inverse, middle
 
 * Todas as bases de dados usadas devem ser copiadas para a pasta do seu app. 
 
-* Não é possível trabalhar com palavras acentuadas (pelo menos que eu saiba!!), nem nos arquivos nem no app.
+* Não é possível trabalhar com palavras acentuadas nos NOMES DOS ARQUIVOS.
 
+* É possível utilizar textos e legendas com acentos, pois todos arquivos devem ter codificação UTF-8.
 
 
 ---
@@ -674,33 +681,36 @@ background-position: 50% 50%
 class: center, inverse, middle
 
 
-# Dica: se sua base de dados é muito grande, ou a análise leva muito tempo (maxima verossimilhaná por exemplo), salve as bases pré-processadas. Como o aplicativo no site do shiny faz tudo em tempo real, pode levar muito tempo para abrir os resultados.
+# Dica: se sua base de dados é muito grande, ou a análise leva muito tempo (máxima verossimilhaná por exemplo), salve as bases pré-processadas. Como o aplicativo no site do shiny faz tudo em tempo real, pode levar muito tempo para abrir os resultados.
 
 ---
 
-# Um exemplo: app STAR
+# Um exemplo: app START
 
-<font style="color: darkorange;">S</font>hiny 
-<font style="color: darkorange;">T</font>ranscriptome
-<font style="color: darkorange;">A</font>nalysis
-<font style="color: darkorange;">R</font>esource
-<font style="color: darkorange;">T</font>ool
-
+<font style="color: darkorange;font-weight: bold;">S</font>hiny 
+<font style="color: darkorange;font-weight: bold;">T</font>ranscriptome
+<font style="color: darkorange;font-weight: bold;">A</font>nalysis
+<font style="color: darkorange;font-weight: bold;">R</font>esource
+<font style="color: darkorange;font-weight: bold;">T</font>ool
 <br>
-Github: [https://github.com/jminnier/STARTapp](https://github.com/jminnier/STARTapp)
 
+Github: [https://github.com/jminnier/STARTapp](github.com/jminnier)
 <br>
+
 <font style="color: green;">
 DATA = <em>RNA-seq gene expression</em>
 </font>
 
-<img src="figs/spreadsheet_annotated.png"/>
+<a href="https://github.com/jminnier/STARTapp"><img src="figs/spreadsheet_annotated.png"/></a>
 
 ---
 
 # Tour muito rápido
 
-<img src="figs/screencast2_gif.png" />
+```{r, echo = FALSE}
+# Renderizando o shiny-app do START na apresentação:
+knitr::include_url("https://kcvi.shinyapps.io/START_HT/", height = "500px")
+```
 
 ---
 
@@ -738,7 +748,7 @@ class: inverse, middle, center
 
 # Importante saber quais serão os usuários do aplicativo!
 
-## Examplo: START app
+## Exemplo: START app
 
 - provavelmente biólogos
 - o aplicativo não pode ser usado para codificação ou grandes conjuntos de dados
@@ -785,26 +795,26 @@ Mas, não mostram porque alguma coisa não funciona.
     + Se o aplicativo precisar do upload de um banco de dados, execute testes com diferentes bancos
     + Crie arquivo .Md de plots
 - Segurança
-    + Are users uploading sensitive data?Os usuários estão carregando dados confidenciais?
+    + Os usuários estão carregando dados confidenciais?
     + Análise de segurança de aplicativos públicos versus versão comercial
 - Velocidade: [Por que tão lento?](https://support.rstudio.com/hc/en-us/articles/115000171848-Why-are-my-Shiny-apps-are-running-slowly-)
      Rprofiler no Rstudio
     + Reduzir o tempo de inicialização
-    + Ferramentas mais recentes: pacotes `future` e` promises` para [programação paralela](https://medium.com/@joe.cheng/an-informal-intro-to-async-shiny-cbf01c85c4c5)
+    + Ferramentas mais recentes: pacotes `future` e ` promises` para [programação paralela](https://medium.com/@joe.cheng/an-informal-intro-to-async-shiny-cbf01c85c4c5)
 
 ---
 
 # Seja criativo!
 
 [papr by Lucy D'Agostino McGowan, Nick Strayer, Jeff Leek](https://jhubiostatistics.shinyapps.io/papr/)
-<img src="figs/papr.png"></img>
+<a href="https://jhubiostatistics.shinyapps.io/papr/"><img src="figs/papr.png"></img></a>
 
 ---
 
-# Diverta-se! 
+# Divirta-se! 
 
 [homebrewR by David Stephens](https://davesteps.shinyapps.io/homebrewR/)
-<img src="figs/homebrewr.png"></img>
+<a href="https://davesteps.shinyapps.io/homebrewR/"><img src="figs/homebrewr.png"></img><a>
 
 ---
 
