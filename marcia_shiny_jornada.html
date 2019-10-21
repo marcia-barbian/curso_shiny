@@ -1,38 +1,25 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+  <head>
+    <title>Shiny para comunicação estatística</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Slides baseados no material das Ladies Jessica Minnier, Érica Castilho e Alison Presmanes Hill" />
+    <link href="libs/remark-css/default.css" rel="stylesheet" />
+    <link href="libs/remark-css/rladies.css" rel="stylesheet" />
+    <link href="libs/remark-css/rladies-fonts.css" rel="stylesheet" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Shiny para comunicação estatística
+## Jornada de Matemática e Estatística
+### Slides baseados no material das Ladies Jessica Minnier, Érica Castilho e Alison Presmanes Hill
+### 16 de outubro, 2019
+
 ---
-title: "Shiny para comunicação estatística"
-subtitle: "Jornada de Matemática e Estatística"
-author: "Slides baseados no material das Ladies Jessica Minnier, Érica Castilho e Alison Presmanes Hill"
-date: "16 de outubro, 2019"
-output:
-  xaringan::moon_reader:
-    css: ["default", "rladies", "rladies-fonts"]
-    lib_dir: libs
-    nature:
-      highlightStyle: github
-      highlightLines: true
-      countIncrementalSlides: false
----
-```{r setup, include=FALSE}
-# Função pra verificar e instalar um vetor de packages:
-ler_libs <- function(packages){
-  instalar <- packages[!(packages %in% installed.packages()[, "Package"])]
-  if(length(instalar) > 0){
-    install.packages(pkgs = instalar, dependencies = TRUE)
-  }
-  invisible(sapply(packages, require, character.only = TRUE))
-}
 
-ler_libs(packages = c("rmarkdown", "shiny", "devtools", "knitr", "rsconnect"))
-devtools::install_github('yihui/xaringan')
 
-# Pra upar um aplicativo pro shinyapps.io:
-#rsconnect::setAccountInfo(name='teste',
-#                          token='token', 
-#                          secret='XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX')
-#rsconnect::deployApp('/cloud/project/kmeans-example')
-
-options(htmltools.dir.version = FALSE)
-```
 
 
 class: center, middle
@@ -63,9 +50,9 @@ class: middle, center
 
 ## Motivação
 
-<font style="color: darkorange;">"Você pode fazer mais um gráfico? Obrigada! Mas, agora preciso de mais um gráfico, acho que pode ter uma relação diferente só com esse grupo de observações. Ok, mas precisava de mais uma análise, pode ser? Ah agora sim acho que acabou a análise, mas peraí, acho que preciso de mais um, adivinha, gráfico? Análise? Filtro de observações, ..."</font>
+&lt;font style="color: darkorange;"&gt;"Você pode fazer mais um gráfico? Obrigada! Mas, agora preciso de mais um gráfico, acho que pode ter uma relação diferente só com esse grupo de observações. Ok, mas precisava de mais uma análise, pode ser? Ah agora sim acho que acabou a análise, mas peraí, acho que preciso de mais um, adivinha, gráfico? Análise? Filtro de observações, ..."&lt;/font&gt;
 
-<img src="figs/heatmap_start.png"></img>
+&lt;img src="figs/heatmap_start.png"&gt;&lt;/img&gt;
 
 ---
 
@@ -109,9 +96,9 @@ background-size: 50%
 
 # Minha motivação
 
-### Núcleo de Avaliação da Unidade (NAU): representar diferentes combinações possíveis de variáveis de avaliação  <font style="color: darkorange;">one data set</font>
+### Núcleo de Avaliação da Unidade (NAU): representar diferentes combinações possíveis de variáveis de avaliação  &lt;font style="color: darkorange;"&gt;one data set&lt;/font&gt;
 
-- <font style="color: darkorange;"> Explorar, visualizar, divulgar</font>
+- &lt;font style="color: darkorange;"&gt; Explorar, visualizar, divulgar&lt;/font&gt;
 - Especificar uma pergunta do questionário ou considerar somente alunos da estatística, matemática, outros cursos, ...  
 
 ---
@@ -121,7 +108,7 @@ background-size: 50%
 
 ### Datathon
 
-<img src="figs/banner_dthon.jpg"></img>
+&lt;img src="figs/banner_dthon.jpg"&gt;&lt;/img&gt;
 
 
 ---
@@ -149,32 +136,32 @@ class: middle, center, inverse
 
 --
 
-<a href="https://kcvi.shinyapps.io/START_HT/"><img src="figs/shinyapp_ht.png"></img></a>
+&lt;a href="https://kcvi.shinyapps.io/START_HT/"&gt;&lt;img src="figs/shinyapp_ht.png"&gt;&lt;/img&gt;&lt;/a&gt;
 ---
 
 
-# *Estatísticos/Cientistas de dados*: <br>"Como fazer as pessoas utilizarem a metodologia que eu criei ou o meu pacote?"
+# *Estatísticos/Cientistas de dados*: &lt;br&gt;"Como fazer as pessoas utilizarem a metodologia que eu criei ou o meu pacote?"
 
 --
 
-<a href="http://qvalue.princeton.edu/"><img src="figs/qvalue.png"></img></a>
+&lt;a href="http://qvalue.princeton.edu/"&gt;&lt;img src="figs/qvalue.png"&gt;&lt;/img&gt;&lt;/a&gt;
 
 ---
 
-# *Estatísticos/Cientistas de dados*: <br> Olhe a análise que eu fiz!!
+# *Estatísticos/Cientistas de dados*: &lt;br&gt; Olhe a análise que eu fiz!!
 
 --
 
-<a href="https://gallery.shinyapps.io/TSupplyDemand/"><img src="figs/phillyschools.png"></img></a>
+&lt;a href="https://gallery.shinyapps.io/TSupplyDemand/"&gt;&lt;img src="figs/phillyschools.png"&gt;&lt;/img&gt;&lt;/a&gt;
 
 
 ---
 
-# *Estatísticos/Cientistas de dados*: <br> Visualização em mapas!
+# *Estatísticos/Cientistas de dados*: &lt;br&gt; Visualização em mapas!
 
 --
 
-<a href="https://gallery.shinyapps.io/"><img src="figs/mapa_shiny.png"></img></a>
+&lt;a href="https://gallery.shinyapps.io/"&gt;&lt;img src="figs/mapa_shiny.png"&gt;&lt;/img&gt;&lt;/a&gt;
 
 
 ---
@@ -183,7 +170,7 @@ class: middle, center, inverse
 
 --
 
-<a href="https://minnier.shinyapps.io/ODSI_continuousData/"><img src="figs/learnr.png"></img></a>
+&lt;a href="https://minnier.shinyapps.io/ODSI_continuousData/"&gt;&lt;img src="figs/learnr.png"&gt;&lt;/img&gt;&lt;/a&gt;
 
 ---
 
@@ -211,11 +198,11 @@ class: middle, center, inverse
 
 # Vários exemplos disponíveis
 
-### <https://gallery.shinyapps.io/LDAelife/>
+### &lt;https://gallery.shinyapps.io/LDAelife/&gt;
 
-### <http://www.dataseries.org/>
+### &lt;http://www.dataseries.org/&gt;
 
-### <https://www.showmeshiny.com/>
+### &lt;https://www.showmeshiny.com/&gt;
 
 
 
@@ -288,9 +275,9 @@ class: middle, center, inverse
 
 # Estrutura básica do arquivo ui.R
 
-```{r, eval=FALSE}
 
-ui <- fluidPage(
+```r
+ui &lt;- fluidPage(
   # *Input() functions;
   # *Output() functions
 )
@@ -305,10 +292,9 @@ ui <- fluidPage(
 * Usuário vai digitar um número? 
 
 
-```{r, eval=FALSE}
 
+```r
 numericInput(inputId, label, value, min=NA, max=NA, step=NA, width = NULL)
-
 ```
 
 * _inputId_ é o nome da variável no seu código.
@@ -327,10 +313,9 @@ numericInput(inputId, label, value, min=NA, max=NA, step=NA, width = NULL)
 O usuário vai selecionar uma opção?
 
 
-```{r, eval=FALSE}
 
+```r
 selectInput(inputId, label, choices, selected = NULL, multiple = FALSE, selectize = TRUE, width = NULL, size = NULL)
-
 ```
 
 * inputId é o nome da variável no seu código.
@@ -348,7 +333,7 @@ selectInput(inputId, label, choices, selected = NULL, multiple = FALSE, selectiz
 # Exemplo: 
 
 
-<a href="http://shiny.rstudio.com/gallery/kmeans-example.html"><img src="figs/k_means.png"></img></a>
+&lt;a href="http://shiny.rstudio.com/gallery/kmeans-example.html"&gt;&lt;img src="figs/k_means.png"&gt;&lt;/img&gt;&lt;/a&gt;
 
 
 ---
@@ -356,7 +341,7 @@ selectInput(inputId, label, choices, selected = NULL, multiple = FALSE, selectiz
 # Outras opções de layout: 
 
 
-<a href="https://shiny.rstudio.com/gallery/widget-gallery.html"><img src="figs/outras_opcoes.png"></img></a>
+&lt;a href="https://shiny.rstudio.com/gallery/widget-gallery.html"&gt;&lt;img src="figs/outras_opcoes.png"&gt;&lt;/img&gt;&lt;/a&gt;
 
 ---
 
@@ -371,13 +356,13 @@ selectInput(inputId, label, choices, selected = NULL, multiple = FALSE, selectiz
 * Gráficos, tabelas, figuras, textos, mapas, etc.
 
 
-<img src="figs/output_tabela.png"></img>
+&lt;img src="figs/output_tabela.png"&gt;&lt;/img&gt;
 
 ---
 
 ### A função deve ser inserida no arquivo ui.R
 
-<img src="figs/plot_output.png"></img>
+&lt;img src="figs/plot_output.png"&gt;&lt;/img&gt;
 
 
 
@@ -386,8 +371,8 @@ selectInput(inputId, label, choices, selected = NULL, multiple = FALSE, selectiz
 # Exemplo: 
 
 
-```{r, eval=FALSE}
 
+```r
 ui = fluidPage(
   sliderInput(inputId = "num",
               label = "escolha um numero",
@@ -398,7 +383,6 @@ ui = fluidPage(
 server = function(input, output) {}
 
 shinyApp(ui = ui, server = server)
-
 ```
 
 ---
@@ -407,7 +391,7 @@ shinyApp(ui = ui, server = server)
 
 ### Resultado da função anterior
 
-<img src="figs/hist_nao_server.png"></img>
+&lt;img src="figs/hist_nao_server.png"&gt;&lt;/img&gt;
 
 
 ---
@@ -420,8 +404,8 @@ shinyApp(ui = ui, server = server)
 * O formato de saída é output$nome_objeto
 
 
-```{r, eval=FALSE}
 
+```r
 server = function(input, output){
   output$hist = #code
 }
@@ -437,8 +421,8 @@ server = function(input, output){
 * Caso contrário ele é estático e não pode depender do input
 
 
-```{r, eval=FALSE}
 
+```r
 server = function(input, output){
   output$hist = renderPlot({
     
@@ -452,18 +436,17 @@ server = function(input, output){
 
 * As funções do tipo render acompanham os tipos de output
 
-<img src="figs/output2.png"></img>
+&lt;img src="figs/output2.png"&gt;&lt;/img&gt;
 
 ---
 # Exemplo:
 
 * Vamos fazer um histograma de uma amostra de uma normal padrão de tamanho 100.
 
-```{r, eval=FALSE}
 
+```r
 renderPlot({hist(rnorm(100))
   })
-
 ```
 
 * `renderPlot` é o tipo de objeto
@@ -475,7 +458,8 @@ renderPlot({hist(rnorm(100))
 # Exemplo:
 
 
-```{r, eval=FALSE}
+
+```r
 server = function(input, output){
   output$hist = renderPlot({
     title = "amostra aleatoria de uma normal de tamanho 100",
@@ -483,7 +467,6 @@ server = function(input, output){
     
   })
 }
-
 ```
 
 ---
@@ -496,8 +479,8 @@ server = function(input, output){
 * Esse valor estará salvo no objeto “num”
 
 
-```{r, eval=FALSE}
 
+```r
 sliderInput(inputId = "num", ...)
 
 #input$num
@@ -509,7 +492,7 @@ sliderInput(inputId = "num", ...)
 
 * Esse valor vai ser atualizado de acordo com o que o usuário escolher.
 
-<img src="figs/input_num.png"></img>
+&lt;img src="figs/input_num.png"&gt;&lt;/img&gt;
 
 
 ---
@@ -518,14 +501,14 @@ sliderInput(inputId = "num", ...)
 * Esse valor agora será usado para definir o tamanho da amostra.
 
 
-```{r, eval=FALSE}
+
+```r
 server = function(input, output){
   output$hist = renderPlot({
     hist(rnorm(input$num))
     
   })
 }
-
 ```
 
 ---
@@ -537,7 +520,7 @@ server = function(input, output){
 * Se modificar o valor escolhido o gráfico atualiza automaticamente (e rapidamente se o processamento no arquivo server não for demorado!)
 
 
-<img src="figs/histograma.png"></img>
+&lt;img src="figs/histograma.png"&gt;&lt;/img&gt;
 
 
 
@@ -547,17 +530,19 @@ server = function(input, output){
 
 # Shiny: básico
 
-```{r, eval=FALSE}
+
+```r
 # what you see, client side
-ui <- fluidPage(
+ui &lt;- fluidPage(
   
 
 )
 ```
 
-```{r, eval=FALSE}
+
+```r
 # Cálculos aqui!
-server <- function(input, output) {
+server &lt;- function(input, output) {
   
   
   
@@ -566,7 +551,8 @@ server <- function(input, output) {
 ```
 
 
-```{r, eval=FALSE}
+
+```r
 # run the app!
 shinyApp(ui = ui, server = server)
 ```
@@ -575,18 +561,20 @@ shinyApp(ui = ui, server = server)
 ---
 # Shiny 
 
-```{r, eval=FALSE}
+
+```r
 # what you see, client side
-ui <- fluidPage(
+ui &lt;- fluidPage(
   # Title, panels
   plotOutput("myplot"), #from output$myplot
   selectInput("foo",choices=allthechoices)
 )
 ```
 
-```{r, eval=FALSE}
+
+```r
 # computations here!
-server <- function(input, output) {
+server &lt;- function(input, output) {
   
   
   
@@ -595,7 +583,8 @@ server <- function(input, output) {
 ```
 
 
-```{r, eval=FALSE}
+
+```r
 # run the app!
 shinyApp(ui = ui, server = server)
 ```
@@ -603,27 +592,30 @@ shinyApp(ui = ui, server = server)
 ---
 # Shiny 
 
-```{r, eval=FALSE}
+
+```r
 # what you see, client side
-ui <- fluidPage(
+ui &lt;- fluidPage(
   # Title, panels
   plotOutput("myplot"), #from output$myplot
   selectInput("foo",choices=allthechoices)
 )
 ```
 
-```{r, eval=FALSE}
+
+```r
 # computations here!
-server <- function(input, output) {
+server &lt;- function(input, output) {
   # reactive plots
-  output$myplot <- renderPlot({ ggplot(yay) + geom_point() })
+  output$myplot &lt;- renderPlot({ ggplot(yay) + geom_point() })
   # use input$foo here, maybe observe changes in UI
   observe({ dostuff(input$foo) })
 }
 ```
 
 
-```{r, eval=FALSE}
+
+```r
 # run the app!
 shinyApp(ui = ui, server = server)
 ```
@@ -681,44 +673,41 @@ background-position: 50% 50%
 class: center, inverse, middle
 
 
-# Dica: se sua base de dados é muito grande, ou a análise leva muito tempo (máxima verossimilhança por exemplo), salve as bases pré-processadas. Como o aplicativo no site do shiny faz tudo em tempo real, pode levar muito tempo para abrir os resultados.
+# Dica: se sua base de dados é muito grande, ou a análise leva muito tempo (máxima verossimilhaná por exemplo), salve as bases pré-processadas. Como o aplicativo no site do shiny faz tudo em tempo real, pode levar muito tempo para abrir os resultados.
 
 ---
 
 # Um exemplo: app START
 
-<font style="color: darkorange;font-weight: bold;">S</font>hiny 
-<font style="color: darkorange;font-weight: bold;">T</font>ranscriptome
-<font style="color: darkorange;font-weight: bold;">A</font>nalysis
-<font style="color: darkorange;font-weight: bold;">R</font>esource
-<font style="color: darkorange;font-weight: bold;">T</font>ool
-<br>
+&lt;font style="color: darkorange;font-weight: bold;"&gt;S&lt;/font&gt;hiny 
+&lt;font style="color: darkorange;font-weight: bold;"&gt;T&lt;/font&gt;ranscriptome
+&lt;font style="color: darkorange;font-weight: bold;"&gt;A&lt;/font&gt;nalysis
+&lt;font style="color: darkorange;font-weight: bold;"&gt;R&lt;/font&gt;esource
+&lt;font style="color: darkorange;font-weight: bold;"&gt;T&lt;/font&gt;ool
+&lt;br&gt;
 
 Github: [https://github.com/jminnier/STARTapp](github.com/jminnier)
-<br>
+&lt;br&gt;
 
-<font style="color: green;">
-DATA = <em>RNA-seq gene expression</em>
-</font>
+&lt;font style="color: green;"&gt;
+DATA = &lt;em&gt;RNA-seq gene expression&lt;/em&gt;
+&lt;/font&gt;
 
-<a href="https://github.com/jminnier/STARTapp"><img src="figs/spreadsheet_annotated.png"/></a>
-
----
-
-# Tour muito rápido
-
-```{r, echo = FALSE}
-# Renderizando o shiny-app do START na apresentação:
-knitr::include_url("https://kcvi.shinyapps.io/START_HT/", height = "500px")
-```
+&lt;a href="https://github.com/jminnier/STARTapp"&gt;&lt;img src="figs/spreadsheet_annotated.png"/&gt;&lt;/a&gt;
 
 ---
 
 # Tour muito rápido
 
-<img src="figs/screencast3.gif" />
+&lt;iframe src="https://kcvi.shinyapps.io/START_HT/" width="100%" height="500px"&gt;&lt;/iframe&gt;
 
-<!--- https://gist.github.com/dergachev/4627207 for screencast to gif --->
+---
+
+# Tour muito rápido
+
+&lt;img src="figs/screencast3.gif" /&gt;
+
+&lt;!--- https://gist.github.com/dergachev/4627207 for screencast to gif ---&gt;
 
 
 ---
@@ -753,14 +742,14 @@ class: inverse, middle, center
 - provavelmente biólogos
 - o aplicativo não pode ser usado para codificação ou grandes conjuntos de dados
 
-<img src="figs/noun_1067136_cc.png" width="300px"></img>
+&lt;img src="figs/noun_1067136_cc.png" width="300px"&gt;&lt;/img&gt;
 ---
 
 # Desafios: 
 
-Fazer que a busca seja interativa  </font> boxes/filtros + <font style="color: darkorange;">Reactive visualization</font>
+Fazer que a busca seja interativa  &lt;/font&gt; boxes/filtros + &lt;font style="color: darkorange;"&gt;Reactive visualization&lt;/font&gt;
 
-<img src="figs/start_search.gif" />
+&lt;img src="figs/start_search.gif" /&gt;
 
 
 ---
@@ -769,10 +758,10 @@ Fazer que a busca seja interativa  </font> boxes/filtros + <font style="color: d
 
 # Landing page - Onde eu estou?
 
-- <font style="color: darkorange;">Mostra</font> o que o app podefazer
+- &lt;font style="color: darkorange;"&gt;Mostra&lt;/font&gt; o que o app podefazer
 
 Bonus: [Jasmine Dumas](https://jasdumas.github.io/) has a [`shinyLP`](https://github.com/jasdumas/shinyLP) package to help!
-<img src="figs/shinylp.jpg"></img>
+&lt;img src="figs/shinylp.jpg"&gt;&lt;/img&gt;
 
 ---
 
@@ -782,7 +771,7 @@ Bonus: [Jasmine Dumas](https://jasdumas.github.io/) has a [`shinyLP`](https://gi
 
 Mas, não mostram porque alguma coisa não funciona.
 
-<img src="figs/start_showcase.png"></img>
+&lt;img src="figs/start_showcase.png"&gt;&lt;/img&gt;
 
 
 ---
@@ -807,14 +796,14 @@ Mas, não mostram porque alguma coisa não funciona.
 # Seja criativo!
 
 [papr by Lucy D'Agostino McGowan, Nick Strayer, Jeff Leek](https://jhubiostatistics.shinyapps.io/papr/)
-<a href="https://jhubiostatistics.shinyapps.io/papr/"><img src="figs/papr.png"></img></a>
+&lt;a href="https://jhubiostatistics.shinyapps.io/papr/"&gt;&lt;img src="figs/papr.png"&gt;&lt;/img&gt;&lt;/a&gt;
 
 ---
 
 # Divirta-se! 
 
 [homebrewR by David Stephens](https://davesteps.shinyapps.io/homebrewR/)
-<a href="https://davesteps.shinyapps.io/homebrewR/"><img src="figs/homebrewr.png"></img><a>
+&lt;a href="https://davesteps.shinyapps.io/homebrewR/"&gt;&lt;img src="figs/homebrewr.png"&gt;&lt;/img&gt;&lt;a&gt;
 
 ---
 
@@ -831,3 +820,111 @@ class: center, inverse, middle
 
 
 # Obrigada!
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
